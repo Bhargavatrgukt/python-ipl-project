@@ -1,24 +1,20 @@
-import csv
-from collections import defaultdict
+import pandas as pd
 
-def csv_to_dict(filename):
-    with open(filename, mode='r') as file:
-        csv_reader = csv.DictReader(file)
-        return [row for row in csv_reader]
 
-def countMatchesWonPerTeamPerYear(matches):
-    winsPerTeamPerYear = defaultdict(lambda: defaultdict(int))
-    for match in matches:
-        season = match['season']
-        winner = match['winner']
-        if winner:
-            winsPerTeamPerYear[season][winner] += 1
-    return winsPerTeamPerYear
+def pd_series_to_dict(data):
+    output = {}
+    for (season, team), count in data.items():
+        if season not in output:
+            output[season] = {}
+        output[season][team] = count
+    return output    
+
 
 def main():
-    matches = csv_to_dict("data/matches.csv")
-    output = countMatchesWonPerTeamPerYear(matches)
-
+    match_data = pd.read_csv("data/matches.csv")
+    filtered_data=match_data=match_data[["season", "winner"]].groupby(["season", "winner"]).size()
+    output=pd_series_to_dict(filtered_data)
+    print(output)
     try:
         with open("output/2.matches_won_per_team_per_year.txt", "w") as file:
             for season, teams in sorted(output.items(), key=lambda x: int(x[0])):
@@ -31,6 +27,7 @@ def main():
         return
 
     print("Output written to output/2.matches_won_per_team_per_year.txt")
+    return
 
 if __name__ == "__main__":
     main()
