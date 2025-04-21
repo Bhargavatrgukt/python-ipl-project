@@ -12,7 +12,8 @@ def pd_series_to_dict(data):
 
 def main():
     match_data = pd.read_csv("data/matches.csv")
-    filtered_data=match_data=match_data[["season", "winner"]].groupby(["season", "winner"]).size()
+    print(match_data[["season", "winner"]].groupby(["season", "winner"]).size())
+    filtered_data=match_data[["season", "winner"]].groupby(["season", "winner"]).size()
     output=pd_series_to_dict(filtered_data)
     print(output)
     try:
