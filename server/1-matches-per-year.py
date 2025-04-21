@@ -1,39 +1,25 @@
+import csv
 from collections import defaultdict
-import sys
-import os
 
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-# from utils.ipl_utils import matchData
+def csv_to_dict(filename):
+    with open(filename, mode='r') as file:
+        csv_reader = csv.DictReader(file)
+        rows = [row for row in csv_reader]
+    return rows
 
-
-def countMatchesPerSeasonApproach2(matches):
-    seasons=defaultdict(int)
-    for match in matches:
-        season=match[1]
-        seasons[season]+=1
-    return dict(sorted(seasons.items(),key=lambda x: int(x[0])))
-# this is one appraoch
 def countMatchesPerSeason(matches):
-    seasons = {}
+    seasons = defaultdict(int)
     for match in matches:
-        season = match[1]
-        if season not in seasons:
-            seasons[season] = 0
+        season = match['season'] 
         seasons[season] += 1
-    return seasons
-
+    return dict(sorted(seasons.items(), key=lambda x: int(x[0])))
 
 def main():
-    with open("data/matches.csv", "r") as file:
-        lines = file.readlines()
-    matches=[line.split(",") for line in lines[1:]]
-    os.makedirs("output", exist_ok=True)    
-    output=countMatchesPerSeasonApproach2(matches)
-
+    matches = csv_to_dict("data/matches.csv")
+    output = countMatchesPerSeason(matches)
     with open("output/1.matches_per_season.txt", "w") as file:
         for season, count in output.items():
             file.write(f"{season}: {count}\n")
-        
 
 if __name__ == "__main__":
     main()

@@ -1,11 +1,13 @@
 import csv
+# from ..utils.ipl_utils import csv_to_dict
+from utils.ipl_utils import csv_to_dict
 
-def csv_to_dict(filename):
-    with open(filename, mode='r') as file:
-        csv_reader = csv.DictReader(file)
-         # This will read the CSV as dictionaries
-        rows = [row for row in csv_reader]
-    return rows
+# def csv_to_dict(filename):
+#     with open(filename, mode='r') as file:
+#         csv_reader = csv.DictReader(file)
+#          # This will read the CSV as dictionaries
+#         rows = [row for row in csv_reader]
+#     return rows
 
 
 def find_lowest_economy_bowler_in_super_over(deliveries):
