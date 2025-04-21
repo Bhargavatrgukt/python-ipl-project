@@ -1,0 +1,2 @@
+Bowler: JJ Bumrah
+Stats: {'no_of_balls': 8, 'runs_given': 6, 'economy': 4.5}
