@@ -11,5 +11,9 @@ def main():
     result=economical_bowlers.sort_values(by="economy_rate",ascending=True)
     print(result)
 
+    with open("output/4.economical_bowlers_in_2015.txt", "w") as f:
+        f.write("Economical Bowlers in IPL 2015 (Sorted by Economy Rate):\n\n")
+        f.write(result.to_string())
+
 if __name__=="__main__":    
     main()

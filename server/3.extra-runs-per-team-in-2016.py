@@ -21,6 +21,10 @@ def main():
     output=count_extra_runs_per_team_in_year_2016(deliveries, matches_played_in_2016)
     print(output)
     
+    with open("output/3.extra_runs_per_team_in_2016.txt", "w") as f:
+        f.write("Extra Runs Conceded per Team in 2016:\n")
+        for team, runs in output.items():
+            f.write(f"{team}: {runs}\n")
         
 
 

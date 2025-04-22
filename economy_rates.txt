@@ -1,0 +1,16 @@
+Bowler Economy Rates in Super Overs:
+
+ total_runs_conceded  balls_bowled  economy
+                   6             8     4.50
+                   6             4     9.00
+                   9             5    10.80
+                  11             6    11.00
+                  11             6    11.00
+                  22            11    12.00
+                  15             7    12.86
+                  15             7    12.86
+                  15             6    15.00
+                  10             4    15.00
+                  15             6    15.00
+                  20             7    17.14
+                  18             4    27.00
